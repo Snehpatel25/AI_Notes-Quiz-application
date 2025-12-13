@@ -1,0 +1,24 @@
+.confirmation-modal {
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
+}
+
+.confirmation-modal p {
+    color: #e2e8f0;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-cyber.danger {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(185, 28, 28, 0.2));
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: #fca5a5;
+}
+
+.btn-cyber.danger:hover {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(185, 28, 28, 0.4));
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    color: #fff;
+}
