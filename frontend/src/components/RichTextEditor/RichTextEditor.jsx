@@ -63,6 +63,7 @@ const RichTextEditor = ({ value, onChange, placeholder = 'Start typing...', onGr
         recognitionRef.current.stop();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const savedRangeRef = useRef(null);
@@ -140,6 +141,7 @@ const RichTextEditor = ({ value, onChange, placeholder = 'Start typing...', onGr
       root.removeEventListener('click', onClick);
       handlersAttachedRef.current = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -157,6 +159,7 @@ const RichTextEditor = ({ value, onChange, placeholder = 'Start typing...', onGr
         clearTimeout(decorateTimerRef.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, glossaryTerms, grammarErrors]);
 
   const execCommand = (command, value = null) => {

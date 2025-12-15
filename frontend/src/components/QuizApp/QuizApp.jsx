@@ -6,6 +6,20 @@ import './QuizApp.css';
 import ReactECharts from 'echarts-for-react';
 import dayjs from 'dayjs';
 
+const commonChartOptions = {
+  backgroundColor: 'transparent',
+  textStyle: { fontFamily: 'Inter, sans-serif' },
+  tooltip: {
+    backgroundColor: 'rgba(15, 23, 42, 0.9)',
+    borderColor: '#06b6d4',
+    textStyle: { color: '#fff' },
+    padding: 12,
+    borderRadius: 8,
+    backdropFilter: 'blur(4px)'
+  },
+  grid: { top: 40, right: 20, bottom: 30, left: 40, containLabel: true }
+};
+
 const QuizApp = ({ token, onBack }) => {
   // View State: 'setup' | 'quiz' | 'result' | 'history'
   const [view, setView] = useState('setup');
@@ -26,20 +40,6 @@ const QuizApp = ({ token, onBack }) => {
     topic: '',
     numQuestions: 5,
   });
-
-  const commonChartOptions = {
-    backgroundColor: 'transparent',
-    textStyle: { fontFamily: 'Inter, sans-serif' },
-    tooltip: {
-      backgroundColor: 'rgba(15, 23, 42, 0.9)',
-      borderColor: '#06b6d4',
-      textStyle: { color: '#fff' },
-      padding: 12,
-      borderRadius: 8,
-      backdropFilter: 'blur(4px)'
-    },
-    grid: { top: 40, right: 20, bottom: 30, left: 40, containLabel: true }
-  };
 
   const historyTrendOption = useMemo(() => {
     if (view !== 'history') return {}; // Optimization

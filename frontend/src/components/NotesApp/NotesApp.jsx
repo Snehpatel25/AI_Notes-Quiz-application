@@ -52,6 +52,7 @@ const NotesApp = ({ token }) => {
 
   useEffect(() => {
     loadNotes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Keyboard Shortcuts
@@ -77,6 +78,7 @@ const NotesApp = ({ token }) => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedNote]);
 
   useEffect(() => {
@@ -100,6 +102,7 @@ const NotesApp = ({ token }) => {
     return () => {
       clearTimeout(timer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedNote, decryptedNotes]);
 
   const loadNotes = async () => {
@@ -278,7 +281,7 @@ const NotesApp = ({ token }) => {
     const content = selectedNote?.isEncrypted
       ? decryptedNotes[selectedNote.id]
       : selectedNote?.content;
-    if (!content || selectedNote?.isEncrypted && !decryptedNotes[selectedNote.id]) return;
+    if (!content || (selectedNote?.isEncrypted && !decryptedNotes[selectedNote.id])) return;
 
     setLoading(true);
     try {
