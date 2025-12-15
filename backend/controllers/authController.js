@@ -5,10 +5,16 @@ import generateToken from '../utils/generateToken.js';
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public
+// @desc    Auth user & get token
+// @route   POST /api/users/login
+// @access  Public
 const authUser = asyncHandler(async (req, res) => {
     const { username, password } = req.body;
 
-    const user = await User.findOne({ username });
+    // Allow login with either username or email
+    const user = await User.findOne({
+        $or: [{ username: username }, { email: username }]
+    });
 
     if (user && (await user.matchPassword(password))) {
         res.json({
@@ -30,10 +36,15 @@ const registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
     const userExists = await User.findOne({ username });
-
     if (userExists) {
         res.status(400);
-        throw new Error('User already exists');
+        throw new Error('Username already taken');
+    }
+
+    const emailExists = await User.findOne({ email });
+    if (emailExists) {
+        res.status(400);
+        throw new Error('Email already registered');
     }
 
     const user = await User.create({
