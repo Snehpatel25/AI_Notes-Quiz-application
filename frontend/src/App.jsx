@@ -13,7 +13,7 @@ function App() {
   // Enforce "Not Logged In" state on initial load (User Request)
   const [token, setToken] = useState(null);
   const [currentView, setCurrentView] = useState('landing');
-  const [username, setUsername] = useState(null);
+
 
   useEffect(() => {
     if (token && (currentView === 'login' || currentView === 'signup')) {
@@ -31,7 +31,7 @@ function App() {
 
   const handleLogin = (newToken, newUsername) => {
     setToken(newToken);
-    setUsername(newUsername);
+
     localStorage.setItem('token', newToken);
     localStorage.setItem('username', newUsername);
     handleViewChange('notes');
@@ -39,7 +39,7 @@ function App() {
 
   const handleLogout = () => {
     setToken(null);
-    setUsername(null);
+
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('currentView');
