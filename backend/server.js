@@ -71,4 +71,13 @@ const startServer = async () => {
   }
 };
 
-startServer();
+import { fileURLToPath } from 'url';
+
+// ... (keep startServer definition)
+
+// Only start the server if running directly
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  startServer();
+}
+
+export default app;
