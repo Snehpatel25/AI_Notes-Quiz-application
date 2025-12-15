@@ -5,6 +5,19 @@ import dayjs from 'dayjs';
 import analyticsService from '../../services/analyticsService';
 import './AnalyticsDashboard.css';
 
+const commonChartOptions = {
+  backgroundColor: 'transparent',
+  textStyle: { fontFamily: 'Inter, sans-serif' },
+  tooltip: {
+    backgroundColor: 'rgba(15, 23, 42, 0.9)',
+    borderColor: '#06b6d4',
+    textStyle: { color: '#fff' },
+    padding: 12,
+    borderRadius: 8,
+    backdropFilter: 'blur(4px)'
+  },
+};
+
 const AnalyticsDashboard = ({ token, onBack }) => {
   const [history, setHistory] = useState([]);
   const [notes, setNotes] = useState([]);
@@ -47,7 +60,7 @@ const AnalyticsDashboard = ({ token, onBack }) => {
     notes.forEach(n => activityDates.add(dayjs(n.updatedAt || n.createdAt).format('YYYY-MM-DD')));
     history.forEach(q => activityDates.add(dayjs(q.completedAt).format('YYYY-MM-DD')));
 
-    const sortedDates = Array.from(activityDates).sort((a, b) => new Date(b) - new Date(a)); // Descending
+
     let streak = 0;
     let currentDate = dayjs();
 
@@ -84,18 +97,7 @@ const AnalyticsDashboard = ({ token, onBack }) => {
 
   // --- CHART OPTIONS ---
 
-  const commonChartOptions = {
-    backgroundColor: 'transparent',
-    textStyle: { fontFamily: 'Inter, sans-serif' },
-    tooltip: {
-      backgroundColor: 'rgba(15, 23, 42, 0.9)',
-      borderColor: '#06b6d4',
-      textStyle: { color: '#fff' },
-      padding: 12,
-      borderRadius: 8,
-      backdropFilter: 'blur(4px)'
-    },
-  };
+
 
   const radarOption = useMemo(() => {
     // 1. Aggregate Note Volume per Subject (Input)

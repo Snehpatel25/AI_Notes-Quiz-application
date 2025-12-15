@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaThumbtack, FaLock, FaTrash, FaDownload, FaEdit } from 'react-icons/fa';
+import { FaThumbtack, FaLock, FaTrash, FaDownload } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import { exportToMarkdown } from '../../utils/exportUtils';
