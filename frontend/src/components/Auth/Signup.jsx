@@ -3,10 +3,13 @@ import { motion } from 'framer-motion';
 import api from '../../config/api';
 import './Login.css'; // Reuse Login styles
 
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 const Signup = ({ onLogin, onSwitchToLogin }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -76,16 +79,40 @@ const Signup = ({ onLogin, onSwitchToLogin }) => {
                         />
                     </motion.div>
 
-                    <motion.div className="form-group" initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.4 }}>
+                    <motion.div className="form-group" initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.4 }} style={{ position: 'relative' }}>
                         <label htmlFor="password">ACCESS CODE</label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            placeholder="CREATE CODE..."
-                        />
+                        <div style={{ position: 'relative' }}>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                placeholder="CREATE CODE..."
+                                style={{ width: '100%', paddingRight: '40px' }}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    background: 'none',
+                                    border: 'none',
+                                    color: 'var(--primary)',
+                                    cursor: 'pointer',
+                                    padding: 0,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    fontSize: '1.2rem',
+                                    opacity: 0.7
+                                }}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </button>
+                        </div>
                     </motion.div>
 
                     {error && (
